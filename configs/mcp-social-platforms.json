@@ -1,0 +1,80 @@
+{
+  "description": "各平台社交媒体 MCP 服务器配置参考模板。复制对应平台的配置到你的 Claude Code settings.json 中即可使用。",
+  "mcpServers": {
+    "xiaohongshu": {
+      "_comment": "小红书 MCP — 支持图文/视频发布、搜索、评论",
+      "_repo": "https://github.com/luyike221/xiaohongshu-mcp-python",
+      "_install": "pip install xiaohongshu-mcp-python",
+      "command": "python",
+      "args": ["-m", "xiaohongshu_mcp_python"],
+      "env": {}
+    },
+    "zhihu": {
+      "_comment": "知乎 MCP — 支持文章发布、搜索",
+      "_repo": "https://github.com/Douyh123/zhihu-mcp",
+      "_install": "参考仓库 README 安装",
+      "command": "node",
+      "args": ["path/to/zhihu-mcp/dist/index.js"],
+      "env": {}
+    },
+    "md2wechat": {
+      "_comment": "微信公众号 Markdown 格式转换器 — 将 Markdown 转为微信排版 HTML",
+      "_repo": "https://github.com/geekjourneyx/md2wechat-mcp-server",
+      "_install": "go build -o md2wechat-mcp-server",
+      "command": "path/to/md2wechat-mcp-server",
+      "args": [],
+      "env": {
+        "MD2WECHAT_API_KEY": "your_api_key_here"
+      }
+    },
+    "weibo": {
+      "_comment": "微博 MCP — 基于微博开放 API，支持搜索、热搜、圈子发帖",
+      "_repo": "https://github.com/wangcch/weibo-mcp",
+      "_install": "npm install -g weibo-mcp",
+      "command": "npx",
+      "args": ["weibo-mcp"],
+      "env": {
+        "WEIBO_APP_ID": "your_app_id",
+        "WEIBO_APP_SECRET": "your_app_secret"
+      }
+    }
+  },
+  "setup_guides": {
+    "xiaohongshu": {
+      "steps": [
+        "1. pip install xiaohongshu-mcp-python",
+        "2. 将上面的 xiaohongshu 配置添加到 Claude Code settings.json 的 mcpServers 中",
+        "3. 重启 Claude Code",
+        "4. 首次使用时会弹出浏览器登录小红书"
+      ]
+    },
+    "zhihu": {
+      "steps": [
+        "1. git clone https://github.com/Douyh123/zhihu-mcp",
+        "2. 按 README 安装依赖并构建",
+        "3. 更新配置中的 command 路径",
+        "4. 将配置添加到 Claude Code settings.json",
+        "5. 重启 Claude Code"
+      ]
+    },
+    "md2wechat": {
+      "steps": [
+        "1. git clone https://github.com/geekjourneyx/md2wechat-mcp-server",
+        "2. go build -o md2wechat-mcp-server",
+        "3. 获取 API Key（参考仓库 README）",
+        "4. 更新配置中的 command 路径和 API Key",
+        "5. 将配置添加到 Claude Code settings.json",
+        "6. 重启 Claude Code"
+      ]
+    },
+    "weibo": {
+      "steps": [
+        "1. npm install -g weibo-mcp",
+        "2. 在微博客户端私信 @微博龙虾助手，发送「连接龙虾」获取 AppId 和 AppSecret",
+        "3. 填入配置的 env 字段",
+        "4. 将配置添加到 Claude Code settings.json",
+        "5. 重启 Claude Code"
+      ]
+    }
+  }
+}

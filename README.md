@@ -32,6 +32,7 @@ Symlink 会自动指向最新文件，无需重新安装。
 |------|------|------|
 | `/dev-flow` | dev | iOS 需求开发全流程（代码分析 → 方案设计 → 迭代开发 → CR → 文档沉淀） |
 | `/biz-store-setup` | biz | 电商线上店铺开店流程（需求梳理 → 搭建 → 验证 → 上线） |
+| `/marketing-publish` | marketing | 多平台内容一键发布（小红书/知乎/微信公众号/微博，写一次发全网） |
 
 ## 目录结构
 
@@ -40,8 +41,12 @@ skill-repo/
 ├── commands/
 │   ├── dev/              # 开发相关 skills
 │   │   └── flow.md       → /dev-flow
-│   └── biz/              # 业务相关 skills
-│       └── store-setup.md → /biz-store-setup
+│   ├── biz/              # 业务相关 skills
+│   │   └── store-setup.md → /biz-store-setup
+│   └── marketing/        # 营销相关 skills
+│       └── publish.md    → /marketing-publish
+├── configs/              # MCP 配置参考
+│   └── mcp-social-platforms.json
 ├── install.sh            # 安装脚本
 ├── uninstall.sh          # 卸载脚本
 └── README.md
