@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-git clone https://github.com/<your-username>/skill-repo.git
+git clone https://github.com/TheChosenGay/skill-repo.git
 cd skill-repo
 chmod +x install.sh
 ./install.sh
@@ -59,7 +59,7 @@ skill-repo/
 
 ```bash
 # 1. 克隆仓库（建议放在固定位置）
-git clone https://github.com/<your-username>/skill-repo.git ~/skill-repo
+git clone https://github.com/TheChosenGay/skill-repo.git ~/skill-repo
 
 # 2. 安装
 cd ~/skill-repo && ./install.sh
