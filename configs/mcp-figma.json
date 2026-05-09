@@ -1,0 +1,34 @@
+{
+  "description": "Figma 官方 MCP 配置参考。用于读取 Figma 设计稿数据，支持视觉还原场景。",
+  "mcpServers": {
+    "figma-developer": {
+      "_comment": "Figma Developer MCP — 读取设计稿布局、颜色、字体、间距等结构化数据",
+      "_repo": "https://github.com/GLips/Figma-Context-MCP",
+      "_package": "figma-developer-mcp",
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--figma-api-key=YOUR_TOKEN", "--stdio"]
+    }
+  },
+  "setup_guide": {
+    "steps": [
+      "1. 获取 Figma Personal Access Token：",
+      "   - 打开 https://www.figma.com/settings",
+      "   - 找到 Personal access tokens，点击 Generate new token",
+      "   - 权限选择：File content (Read only) + Dev resources (Read only)",
+      "   - 复制生成的 token（仅显示一次）",
+      "",
+      "2. 方式 A — 通过命令行一键添加（推荐）：",
+      "   claude mcp add figma-developer -- npx -y figma-developer-mcp --figma-api-key=YOUR_TOKEN --stdio",
+      "",
+      "3. 方式 B — 手动编辑 ~/.claude/settings.json：",
+      "   在 mcpServers 字段中添加上方 figma-developer 配置，将 YOUR_TOKEN 替换为真实 token",
+      "",
+      "4. 重启 Claude Code，输入 /mcp 确认 figma-developer 显示为已连接"
+    ],
+    "token_scopes_required": [
+      "File content: Read only",
+      "Dev resources: Read only"
+    ],
+    "token_docs": "https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens"
+  }
+}
