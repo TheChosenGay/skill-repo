@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# uninstall.sh — 移除 install.sh 创建的 symlink
-# 支持：CodeBuddy Code、Claude Code（自动检测）
+# uninstall.sh — 移除 install.sh 创建的所有 symlink
+# 支持：Claude Code、CodeBuddy Code、Cursor（自动检测）
 #
 
 set -e
@@ -25,10 +25,18 @@ if [ -d "$HOME/.claude" ]; then
   PLATFORM_TYPES+=("dir")
 fi
 
+if [ -d "$HOME/.cursor" ]; then
+  TARGETS+=("$HOME/.cursor/rules")
+  PLATFORM_NAMES+=("Cursor")
+  PLATFORM_TYPES+=("cursor")
+fi
+
 if [ ${#TARGETS[@]} -eq 0 ]; then
   echo "未检测到支持的平台，无需卸载。"
   exit 0
 fi
+
+total_removed=0
 
 for i in "${!TARGETS[@]}"; do
   COMMANDS_DST="${TARGETS[$i]}"
@@ -53,9 +61,8 @@ for i in "${!TARGETS[@]}"; do
           removed=$((removed + 1))
         fi
       done
-      # 若目录为空则一并删除
       [ -d "$cat_dst" ] && rmdir "$cat_dst" 2>/dev/null || true
-    else
+    elif [ "$platform_type" = "dir" ]; then
       # Claude Code：移除目录级 symlink
       target="$COMMANDS_DST/$category"
       if [ -L "$target" ]; then
@@ -65,8 +72,27 @@ for i in "${!TARGETS[@]}"; do
       elif [ -e "$target" ]; then
         echo "  [$platform_name] 跳过 $target （不是 symlink）"
       fi
+    else
+      # Cursor：移除 .mdc 文件 symlink
+      for skill_file in "$category_dir"*.md; do
+        [ -f "$skill_file" ] || continue
+        skill_name=$(basename "$skill_file" .md)
+        mdc_name="${category}-${skill_name}.mdc"
+        target="$COMMANDS_DST/$mdc_name"
+        if [ -L "$target" ]; then
+          rm "$target"
+          echo "  [$platform_name] 已移除 $target"
+          removed=$((removed + 1))
+        elif [ -e "$target" ]; then
+          echo "  [$platform_name] 跳过 $target （不是 symlink）"
+        fi
+      done
     fi
   done
 
   echo "  [$platform_name] 完成：移除了 $removed 个 symlink"
+  total_removed=$((total_removed + removed))
 done
+
+echo ""
+echo "卸载完成！共移除 $total_removed 个 symlink。"

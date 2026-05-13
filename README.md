@@ -34,6 +34,7 @@ Symlink 会自动指向最新文件，无需重新安装。
 | `/biz-store-setup` | biz | 电商线上店铺开店流程（需求梳理 → 搭建 → 验证 → 上线） |
 | `/marketing-publish` | marketing | 多平台内容一键发布（小红书/知乎/微信公众号/微博，写一次发全网） |
 | `/design-figma-restore` | design | Figma 视觉还原 & 走查：从零写还原代码，或对照设计稿检查间距/颜色/字号一致性；自动检测平台并配置 MCP |
+| `/dev-ui-gen` | dev | iOS Design System 生成器：风格描述 → design-tokens.json → SwiftUI 代码 → Icon 生成（SVG 描述生成 / Iconify 在线拉取） |
 
 ## 目录结构
 
@@ -42,6 +43,7 @@ skill-repo/
 ├── commands/
 │   ├── dev/              # 开发相关 skills
 │   │   └── flow.md       → /dev-flow
+│   │   └── ui-gen.md     → /dev-ui-gen
 │   ├── biz/              # 业务相关 skills
 │   │   └── store-setup.md → /biz-store-setup
 │   ├── marketing/        # 营销相关 skills
